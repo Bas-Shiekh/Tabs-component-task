@@ -2,25 +2,25 @@
 
 interface TabButtonProps {
   isActive: boolean;
-  key: string;
+  keyElement: string;
   label: string;
   onClick: () => void;
 }
 
 const TabButton: React.FC<TabButtonProps> = ({
   isActive,
-  key,
+  keyElement,
   label,
   onClick,
 }) => {
   return (
     <button
       type="button"
-      key={key}
+      key={keyElement}
       onClick={onClick}
       className={`
-            px-[1rem]
-            py-[0.8rem]
+            px-[0.6rem]
+            py-[0.6rem]
             relative
             transition
             before:absolute

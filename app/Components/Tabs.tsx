@@ -22,15 +22,22 @@ const Tabs: React.FC<TabsProps> = ({ items, defaultActiveKey }) => {
 
   return (
     <>
-      <div className="flex w-full items-center gap-8 border-b border-b-[#cccccc]">
+      <div className="flex w-full items-center gap-4 border-b border-b-[#cccccc]">
         {items?.map((item) => (
           <TabButton
             isActive={item.key === active ? true : false}
             key={item.key}
+            keyElement={item.key}
             onClick={() => handleTabClick(item.key)}
             label={item.label}
           />
         ))}
+      </div>
+      <div className="flex w-full items-center gap-8 mt-8">
+        {items?.map((item) => {
+          if (item.key !== active) return;
+          return <div key={item.key}>{item.children}</div>;
+        })}
       </div>
     </>
   );
