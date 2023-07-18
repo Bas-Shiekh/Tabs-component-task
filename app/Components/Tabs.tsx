@@ -15,7 +15,11 @@ interface TabsProps {
   centered?: boolean;
   size?: string;
   position?: string;
-  color?: string;
+  style?: {
+    color?: string;
+    activeColor?: string;
+    [key: string]: string | undefined;
+  };
   defaultActiveKey?: string;
 }
 
@@ -25,7 +29,7 @@ const Tabs: React.FC<TabsProps> = ({
   size,
   position,
   centered,
-  color,
+  style,
 }) => {
   const [active, setActive] = useState(defaultActiveKey);
   const [newItems, setNewItems] = useState(items);
@@ -37,7 +41,7 @@ const Tabs: React.FC<TabsProps> = ({
   const handleRemoveItem = (key: string) => {
     setNewItems((prev) => prev.filter((item) => item.key !== key));
   };
-  
+
   return (
     <div
       className={`
@@ -71,10 +75,10 @@ const Tabs: React.FC<TabsProps> = ({
             position={position || "top"}
             disabled={item.disabled || false}
             closeable={item.closeable || false}
-            color={color}
             handleRemoveItem={handleRemoveItem}
             onClick={() => handleTabClick(item.key)}
             label={item.label}
+            style={style}
           />
         ))}
       </div>
