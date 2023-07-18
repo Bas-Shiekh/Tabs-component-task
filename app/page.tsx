@@ -49,6 +49,7 @@ const Home = () => {
   const [position, setPosition] = useState<string>("top");
   const [size, setSize] = useState<string>("small");
   const [color, setColor] = useState<string>("");
+  const [activeColor, setActiveColor] = useState<string>("");
   const [values, setValues] = useState({
     position: "top",
     size: "small",
@@ -61,7 +62,7 @@ const Home = () => {
 
   const handleSetPosition = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPosition(e.target.value);
-    setValues({...values, position: e.target.value})
+    setValues({ ...values, position: e.target.value });
   };
 
   const handleSetCentered = () => {
@@ -72,12 +73,21 @@ const Home = () => {
     setColor(e.target.value);
   };
 
+  const handleSetActiveColor = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setActiveColor(e.target.value);
+  };
+
   return (
-    <main className="flex min-h-screen flex-col p-24">
+    <main className="flex min-h-screen flex-col p-[2rem] md:p-24">
       <div className="flex flex-col gap-4 mb-8">
         <Container title="Size">
           {["small", "middle", "large"].map((size) => (
-            <Button onClick={handleSetSize} value={size} key={size} size={values.size} />
+            <Button
+              onClick={handleSetSize}
+              value={size}
+              key={size}
+              size={values.size}
+            />
           ))}
         </Container>
         <Container title="Position">
@@ -96,6 +106,9 @@ const Home = () => {
             value={!centered ? "Enable" : "Disable"}
           />
         </Container>
+        <Container title="Active Color">
+          <input type="color" onChange={handleSetActiveColor} />
+        </Container>
         <Container title="Color">
           <input type="color" onChange={handleSetColor} />
         </Container>
@@ -106,6 +119,7 @@ const Home = () => {
         size={size}
         centered={centered}
         position={position}
+        style={{ color, activeColor }}
       />
     </main>
   );
