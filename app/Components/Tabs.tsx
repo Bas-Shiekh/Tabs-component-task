@@ -6,6 +6,7 @@ interface ItemsProps {
   key: string;
   label: string | React.ReactElement;
   disabled?: boolean;
+  closeable?: boolean;
   children?: string | React.ReactElement;
 }
 
@@ -14,6 +15,7 @@ interface TabsProps {
   centered?: boolean;
   size?: string;
   position?: string;
+  color?: string;
   defaultActiveKey?: string;
 }
 
@@ -23,17 +25,23 @@ const Tabs: React.FC<TabsProps> = ({
   size,
   position,
   centered,
+  color,
 }) => {
   const [active, setActive] = useState(defaultActiveKey);
+  const [newItems, setNewItems] = useState(items);
 
   const handleTabClick = (key: string) => {
     setActive(key);
   };
 
+  const handleRemoveItem = (key: string) => {
+    setNewItems((prev) => prev.filter((item) => item.key !== key));
+  };
+  
   return (
     <div
       className={`
-        flex w-full gap-4 flex-col
+        flex w-full gap-4 flex-col border border-[#aaaaaa] rounded-md p-2
         ${position === "bottom" && "flex-col-reverse"}
         ${position === "left" && "!flex-row"}
         ${position === "right" && "!flex-row-reverse"}
@@ -51,12 +59,10 @@ const Tabs: React.FC<TabsProps> = ({
             position === "right" &&
             "border-l border-l-[#cccccc] flex-col border-b-0 !w-[150px] h-[600px]"
           }
-          ${
-            centered && "justify-center"
-          }
+          ${centered && "justify-center"}
       `}
       >
-        {items?.map((item) => (
+        {newItems?.map((item) => (
           <TabButton
             isActive={item.key === active ? true : false}
             key={item.key}
@@ -64,13 +70,16 @@ const Tabs: React.FC<TabsProps> = ({
             size={size || "small"}
             position={position || "top"}
             disabled={item.disabled || false}
+            closeable={item.closeable || false}
+            color={color}
+            handleRemoveItem={handleRemoveItem}
             onClick={() => handleTabClick(item.key)}
             label={item.label}
           />
         ))}
       </div>
       <div className="flex w-[90%] gap-8">
-        {items?.map((item) => {
+        {newItems?.map((item) => {
           if (item.key !== active) return;
           return <div key={item.key}>{item.children}</div>;
         })}

@@ -1,15 +1,16 @@
 "use client";
 import { useState } from "react";
-import Image from "next/image";
 import Tabs from "./Components/Tabs";
-import icon from "@/public/next.svg";
+import Button from "./Components/Button";
+import Container from "./Components/Container";
+import { AiFillApple } from "react-icons/ai";
 
 const items = [
   {
     key: "1",
     label: (
-      <span className="flex gap-2 justify-between">
-        <Image src={icon} alt="icon" width={30} height={30} />
+      <span className="flex gap-2 justify-between items-center">
+        <AiFillApple />
         Tab
       </span>
     ),
@@ -28,130 +29,76 @@ const items = [
     disabled: true,
     children: "hello from tab two",
   },
-  // ...new Array(30).fill(null).map((_, i) => {
-  //     const id = String(i + 3);
-  //     return {
-  //       label: `Tab-${id}`,
-  //       key: id,
-  //       disabled: i === 28,
-  //       children: `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nulla, nam
-  //       accusamus optio magni, accusantium modi dolor fugiat incidunt quis sint,
-  //       error deleniti consectetur hic cupiditate voluptates assumenda inventore
-  //       voluptatem aliquam. ${id}`,
-  //     };
-  //   }),
-  {
-    key: "3",
-    label: "tab 3",
-    children: "hello from tab three",
-  },
+  ...new Array(10).fill(null).map((_, i) => {
+    const id = String(i + 3);
+    return {
+      label: `Tab-${id}`,
+      key: id,
+      disabled: i === 28,
+      closeable: true,
+      children: `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nulla, nam
+        accusamus optio magni, accusantium modi dolor fugiat incidunt quis sint,
+        error deleniti consectetur hic cupiditate voluptates assumenda inventore
+        voluptatem aliquam. ${id}`,
+    };
+  }),
 ];
 
 const Home = () => {
   const [centered, setCentered] = useState<boolean>(false);
-  const [position, setPosition] = useState<string>("");
+  const [position, setPosition] = useState<string>("top");
   const [size, setSize] = useState<string>("small");
+  const [color, setColor] = useState<string>("");
+  const [values, setValues] = useState({
+    position: "top",
+    size: "small",
+  });
 
-  const handleSetSize = (e: any) => {
+  const handleSetSize = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSize(e.target.value);
+    setValues({ ...values, size: e.target.value });
   };
 
-  const handleSetPosition = (e: any) => {
+  const handleSetPosition = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPosition(e.target.value);
+    setValues({...values, position: e.target.value})
   };
 
-  const handleSetCentered = (value: boolean) => {
-    setCentered(value);
+  const handleSetCentered = () => {
+    setCentered((prev) => !prev);
+  };
+
+  const handleSetColor = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setColor(e.target.value);
   };
 
   return (
     <main className="flex min-h-screen flex-col p-24">
       <div className="flex flex-col gap-4 mb-8">
-        <div className="flex gap-2 items-center">
-          <h1>Size :</h1>
-          <div className="flex gap-4">
-            <button
-              type="button"
-              onClick={handleSetSize}
-              value="small"
-              className="border border-blue-500 px-4 py-2 rounded-lg"
-            >
-              Small
-            </button>
-            <button
-              type="button"
-              onClick={handleSetSize}
-              value="middle"
-              className="border border-blue-500 px-4 py-2 rounded-lg"
-            >
-              Middle
-            </button>
-            <button
-              type="button"
-              onClick={handleSetSize}
-              value="large"
-              className="border border-blue-500 px-4 py-2 rounded-lg"
-            >
-              Large
-            </button>
-          </div>
-        </div>
-        <div className="flex gap-2 items-center">
-          <h1>Position :</h1>
-          <div className="flex gap-4">
-            <button
-              type="button"
+        <Container title="Size">
+          {["small", "middle", "large"].map((size) => (
+            <Button onClick={handleSetSize} value={size} key={size} size={values.size} />
+          ))}
+        </Container>
+        <Container title="Position">
+          {["top", "bottom", "left", "right"].map((position) => (
+            <Button
               onClick={handleSetPosition}
-              value="left"
-              className="border border-blue-500 px-4 py-2 rounded-lg"
-            >
-              Left
-            </button>
-            <button
-              type="button"
-              onClick={handleSetPosition}
-              value="right"
-              className="border border-blue-500 px-4 py-2 rounded-lg"
-            >
-              Right
-            </button>
-            <button
-              type="button"
-              onClick={handleSetPosition}
-              value="top"
-              className="border border-blue-500 px-4 py-2 rounded-lg"
-            >
-              Top
-            </button>
-            <button
-              type="button"
-              onClick={handleSetPosition}
-              value="bottom"
-              className="border border-blue-500 px-4 py-2 rounded-lg"
-            >
-              Bottom
-            </button>
-          </div>
-        </div>
-        <div className="flex gap-2 items-center">
-          <h1>Position :</h1>
-          <div className="flex gap-4">
-            <button
-              type="button"
-              onClick={() => handleSetCentered(true)}
-              className="border border-blue-500 px-4 py-2 rounded-lg"
-            >
-              True
-            </button>
-            <button
-              type="button"
-              onClick={() => handleSetCentered(false)}
-              className="border border-blue-500 px-4 py-2 rounded-lg"
-            >
-              False
-            </button>
-          </div>
-        </div>
+              value={position}
+              key={position}
+              position={values.position}
+            />
+          ))}
+        </Container>
+        <Container title="Centered">
+          <Button
+            onClick={handleSetCentered}
+            value={!centered ? "Enable" : "Disable"}
+          />
+        </Container>
+        <Container title="Color">
+          <input type="color" onChange={handleSetColor} />
+        </Container>
       </div>
       <Tabs
         items={items}
