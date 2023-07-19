@@ -95,6 +95,7 @@ You can also set custom styles:
 - ➡️ TypeScript.
 - ➡️ classNames.
 - ➡️ React-icons.
-- ➡️ Eslint.
+- ➡️ TailwindCss.
 - ➡️ CSS3.
+- ➡️ Eslint.
 
