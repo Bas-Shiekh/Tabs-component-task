@@ -2,10 +2,10 @@
 
 ## Installation
 
-1- Clone this repository by typing `git clone https://github.com/Bas-Shiekh/tindo-task.git`
-2- Open terminal
-3- Run `npm i` to install packages.
-4- Run `npm run dev` to start project in the browser
+- Clone this repository by typing `git clone https://github.com/Bas-Shiekh/tindo-task.git`
+- Open terminal
+- Run `npm i` to install packages.
+- Run `npm run dev` to start project in the browser
 
 ## Usage
 
@@ -14,11 +14,11 @@
 ```
 
 1- Create an array of objects to define the tabs and their content. Each object should contain the following properties:
-  -`key` (string): A unique identifier for the tab.
-  -`label` (string | React.ReactElement): The title of the tab, which can be a string or a React element.
-  -`disabled` (boolean, optional): Set to `true` to disable the tab. (Default: `false`)
-  -`closeable` (boolean, optional): Set to `true` to enable a close button on the tab. (Default: `false`)
-  -`children` (string | React.ReactElement, optional): The content to be displayed when the tab is selected.
+  - `key` (string): A unique identifier for the tab.
+  - `label` (string | React.ReactElement): The title of the tab, which can be a string or a React element.
+  - `disabled` (boolean, optional): Set to `true` to disable the tab. (Default: `false`)
+  - `closeable` (boolean, optional): Set to `true` to enable a close button on the tab. (Default: `false`)
+  - `children` (string | React.ReactElement, optional): The content to be displayed when the tab is selected.
 
 Example data for `items`:
 
@@ -64,9 +64,9 @@ The `Tabs` component supports the following props:
   - `position` (string, optional): The position of the tabs. Use `'top'`, `'bottom'`, `'left'`, or `'right'`. (Default: `'top'`)
   - `centered` (boolean, optional): Set to `true` to center-align the tabs. (Default: `false`)
   - `style` (object, optional): Custom CSS styles for the tabs. You can define the following properties:
-      -- `color` (string, optional): The text color of inactive tabs. (Default: `'black'`)
-      -- `activeColor` (string, optional): The text color of the active tab. (Default: `'blue'`)
-      -- And also you can any `CSS` proprieties
+      - `color` (string, optional): The text color of inactive tabs. (Default: `'black'`)
+      - `activeColor` (string, optional): The text color of the active tab. (Default: `'blue'`)
+      - And also you can add any `CSS` proprieties
 
 ## Customization
 
