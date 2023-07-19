@@ -1,5 +1,7 @@
 # Tabs component [Live demo](https://tindo-task.vercel.app/)
 
+### Check Documentation from [Here](https://hackmd.io/oceh0BxcTJ2_W9Xgh4SR3Q?view)
+
 ## Installation
 
 - Clone this repository by typing `git clone https://github.com/Bas-Shiekh/tindo-task.git`
