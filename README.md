@@ -1,4 +1,4 @@
-# Tabs component
+# Tabs component [Live demo](https://tindo-task.vercel.app/)
 
 ## Installation
 
