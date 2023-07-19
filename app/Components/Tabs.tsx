@@ -15,6 +15,8 @@ interface TabsProps {
   centered?: boolean;
   size?: string;
   position?: string;
+  className?: string;
+  id?: string;
   style?: {
     color?: string;
     activeColor?: string;
@@ -30,6 +32,8 @@ const Tabs: React.FC<TabsProps> = ({
   position,
   centered,
   style,
+  className,
+  id,
 }) => {
   const [active, setActive] = useState(defaultActiveKey);
   const [newItems, setNewItems] = useState(items);
@@ -44,11 +48,13 @@ const Tabs: React.FC<TabsProps> = ({
 
   return (
     <div
+      id={id}
       className={`
         flex w-full gap-4 flex-col border border-[#aaaaaa] rounded-md p-2
         ${position === "bottom" && "flex-col-reverse"}
         ${position === "left" && "!flex-row"}
         ${position === "right" && "!flex-row-reverse"}
+        ${className}
     `}
     >
       <div
