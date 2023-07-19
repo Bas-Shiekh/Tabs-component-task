@@ -3,7 +3,6 @@
 ## Installation
 
 - Clone this repository by typing `git clone https://github.com/Bas-Shiekh/tindo-task.git`
-- Open terminal
 - Run `npm i` to install packages.
 - Run `npm run dev` to start project in the browser
 
