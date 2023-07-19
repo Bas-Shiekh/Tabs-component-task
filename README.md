@@ -63,6 +63,7 @@ The `Tabs` component supports the following props:
   - `size` (string, optional): The size of the tabs. Use `'small'`, `'middle'`, or `'large'`. (Default: `'small'`)
   - `position` (string, optional): The position of the tabs. Use `'top'`, `'bottom'`, `'left'`, or `'right'`. (Default: `'top'`)
   - `centered` (boolean, optional): Set to `true` to center-align the tabs. (Default: `false`)
+  - `className` (string, optional): Custom CSS styles for the tabs by using tailwindCss or add class for root element
   - `style` (object, optional): Custom CSS styles for the tabs. You can define the following properties:
       - `color` (string, optional): The text color of inactive tabs. (Default: `'black'`)
       - `activeColor` (string, optional): The text color of the active tab. (Default: `'blue'`)
